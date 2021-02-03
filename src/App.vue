@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <select v-model="theme" @change="changeTheme">
+      <option value="default">蓝色</option>
+      <option value="red">红色</option>
+    </select>
+    <HelloWorld></HelloWorld>
   </div>
 </template>
 
@@ -12,17 +15,30 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      theme: 'default',
+    }
+  },
+  methods: {
+    changeTheme() {
+      document.documentElement.setAttribute('theme', this.theme);
+    }
+  },
+  mounted() {
+    this.changeTheme();
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000;
   margin-top: 60px;
 }
 </style>
